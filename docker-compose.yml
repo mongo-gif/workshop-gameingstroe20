@@ -1,0 +1,35 @@
+services:
+  web:
+    build: ./backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend:/var/www/html/api
+      - ./frontend:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=gaming_store
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gaming_store
+    volumes:
+      - ./backend/database.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    networks:
+      - gaming-network
+
+networks:
+  gaming-network:
+    driver: bridge
+
+volumes:
+  db_data:

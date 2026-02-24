@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | G-STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">G-STORE</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2 id="form-title">Login</h2>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Submit</button>
+            </form>
+            <p style="margin-top:1rem;text-align:center;">
+                <a href="#" id="toggle-auth" style="color:var(--text-highlight)">Need an account? Register</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        const form = document.getElementById('auth-form');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const toggleBtn = document.getElementById('toggle-auth');
+        const formTitle = document.getElementById('form-title');
+
+        let isLogin = true;
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLogin = !isLogin;
+            formTitle.textContent = isLogin ? 'Login' : 'Register';
+            toggleBtn.textContent = isLogin ? 'Need an account? Register' : 'Already have an account? Login';
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+            const action = isLogin ? 'login' : 'register';
+
+            try {
+                const response = await fetch(`${API_URL}/auth.php?action=${action}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    if (isLogin) {
+                        localStorage.setItem('user', JSON.stringify(result.user));
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('Registration successful! Please login.');
+                        isLogin = true;
+                        formTitle.textContent = 'Login';
+                        toggleBtn.textContent = 'Need an account? Register';
+                    }
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred.');
+            }
+        });
+    </script>
+</body>
+
+</html>

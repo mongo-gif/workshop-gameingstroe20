@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-STORE | Premium Gaming Gear</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="home">
+    <header>
+        <div class="logo">G-STORE</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <span id="user-display"></span>
+            <a href="cart.html" class="btn">Cart <span id="cart-count">(0)</span></a>
+            <a href="login.html" id="login-btn" class="btn btn-primary">Login</a>
+            <button id="logout-btn" onclick="logout()" class="btn hidden">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Latest Gear</h1>
+        <div id="products-grid" class="products-grid">
+            <!-- Products will be loaded here -->
+            <p>Loading products...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

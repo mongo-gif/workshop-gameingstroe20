@@ -1,0 +1,10 @@
+# Defaults
+node_modules/
+vendor/
+.DS_Store
+.env
+.idea
+.vscode
+Thumbs.db
+# Docker
+docker-compose.override.yml
