@@ -23,7 +23,7 @@ function getProducts($conn)
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($products);
+    echo json_encode($products, JSON_UNESCAPED_UNICODE);
 }
 
 function getProduct($conn, $id)
@@ -35,10 +35,10 @@ function getProduct($conn, $id)
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($product) {
-        echo json_encode($product);
+        echo json_encode($product, JSON_UNESCAPED_UNICODE);
     } else {
         http_response_code(404);
-        echo json_encode(["message" => "Product not found."]);
+        echo json_encode(["message" => "Product not found."], JSON_UNESCAPED_UNICODE);
     }
 }
 ?>

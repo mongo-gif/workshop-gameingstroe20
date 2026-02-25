@@ -16,12 +16,17 @@ $username = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') ?: 'root';
 
 try {
-    $conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
+    $conn = new PDO(
+        "mysql:host=" . $host . ";dbname=" . $db_name . ";charset=utf8mb4",
+        $username,
+        $password,
+        [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"]
+    );
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conn->exec("set names utf8");
 } catch(PDOException $exception) {
     http_response_code(500);
     echo json_encode(["message" => "Connection error: " . $exception->getMessage()]);
     exit();
 }
 ?>
+

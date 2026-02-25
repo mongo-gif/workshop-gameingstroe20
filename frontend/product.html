@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-STORE | ร้านคอมพิวเตอร์ครบวงจร อุปกรณ์เกมมิ่ง</title>
-    <meta name="description" content="G-STORE ร้านจำหน่ายคอมพิวเตอร์ อุปกรณ์เกมมิ่ง คีย์บอร์ด เมาส์ หูฟัง จอมอนิเตอร์ ราคาดี บริการหลังการขายเยี่ยม">
+    <title>รายละเอียดสินค้า | G-STORE</title>
+    <meta name="description"
+        content="G-STORE ร้านจำหน่ายคอมพิวเตอร์ อุปกรณ์เกมมิ่ง คีย์บอร์ด เมาส์ หูฟัง จอมอนิเตอร์ ราคาดี">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body data-page="home">
+<body data-page="product">
     <!-- Top Info Bar -->
     <div class="top-bar">
         <div class="container">
@@ -34,7 +35,7 @@
             </div>
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="ค้นหาสินค้า...">
-                <button class="search-btn" onclick="searchProducts()">🔍</button>
+                <button class="search-btn" onclick="window.location.href='index.html'">🔍</button>
             </div>
             <div class="header-actions">
                 <a href="login.html" id="login-btn" class="header-icon-btn">
@@ -54,13 +55,13 @@
     <!-- Navigation Bar -->
     <nav class="nav-bar">
         <div class="container">
-            <button class="category-dropdown-btn" onclick="scrollToCategories()">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html#categories'">
                 ☰ หมวดหมู่สินค้า ›
             </button>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">หน้าแรก</a></li>
-                <li><a href="#products">สินค้าทั้งหมด</a></li>
-                <li><a href="#categories">หมวดหมู่</a></li>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
                 <li><a href="#">บทความ</a></li>
                 <li><a href="#">ติดต่อเรา</a></li>
                 <li><a href="#">เกี่ยวกับเรา</a></li>
@@ -68,84 +69,29 @@
         </div>
     </nav>
 
-    <!-- Hero Banner Carousel -->
-    <section class="hero-section">
-        <div class="carousel" id="hero-carousel">
-            <div class="carousel-inner" id="carousel-inner">
-                <div class="carousel-slide slide-1">
-                    <div class="slide-content">
-                        <h2>🎮 Gaming Gear ลดสูงสุด 40%</h2>
-                        <p>คีย์บอร์ด เมาส์ หูฟังเกมมิ่ง จากแบรนด์ชั้นนำ ราคาพิเศษ</p>
-                        <a href="#products" class="slide-btn">🛒 ช้อปเลย</a>
-                    </div>
-                </div>
-                <div class="carousel-slide slide-2">
-                    <div class="slide-content">
-                        <h2>🖥️ จัดสเปกคอมในงบที่คุณเลือก</h2>
-                        <p>บริการประกอบคอมพิวเตอร์ตามสเปก พร้อมรับประกันทุกชิ้นส่วน</p>
-                        <a href="#products" class="slide-btn">ดูสินค้า ›</a>
-                    </div>
-                </div>
-                <div class="carousel-slide slide-3">
-                    <div class="slide-content">
-                        <h2>🔥 สินค้าใหม่ เข้าทุกสัปดาห์</h2>
-                        <p>อัปเดตอุปกรณ์ใหม่ล่าสุดก่อนใคร ส่งฟรีทั่วประเทศ</p>
-                        <a href="#products" class="slide-btn">สั่งซื้อเลย ›</a>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-arrow prev" onclick="prevSlide()">‹</button>
-            <button class="carousel-arrow next" onclick="nextSlide()">›</button>
-            <div class="carousel-dots" id="carousel-dots"></div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">🏠 หน้าแรก</a>
+                <span class="breadcrumb-sep">›</span>
+                <a href="index.html#products">สินค้าทั้งหมด</a>
+                <span class="breadcrumb-sep">›</span>
+                <span id="breadcrumb-category">หมวดหมู่</span>
+                <span class="breadcrumb-sep">›</span>
+                <span id="breadcrumb-product" class="breadcrumb-current">กำลังโหลด...</span>
+            </nav>
         </div>
-    </section>
+    </div>
 
-    <!-- Promo Cards -->
-    <section class="promo-section">
-        <div class="promo-grid">
-            <div class="promo-card promo-card-1">
-                <div>
-                    <h3>🛡️ รับประกันทุกชิ้น</h3>
-                    <p>บริการหลังการขายดีเยี่ยม เคลมง่าย</p>
+    <!-- Product Detail Section -->
+    <section class="product-detail-section">
+        <div class="container">
+            <div id="product-detail-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>กำลังโหลดข้อมูลสินค้า...</p>
                 </div>
-            </div>
-            <div class="promo-card promo-card-2">
-                <div>
-                    <h3>🚚 จัดส่งรวดเร็ว</h3>
-                    <p>ส่งฟรีทั่วประเทศ สั่งวันนี้ได้พรุ่งนี้</p>
-                </div>
-            </div>
-            <div class="promo-card promo-card-3">
-                <div>
-                    <h3>💰 ผ่อน 0% สูงสุด 10 เดือน</h3>
-                    <p>ผ่อนได้เลยวันนี้ บนเว็บไซต์</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Category Section -->
-    <section class="category-section" id="categories">
-        <div class="section-title">
-            <span class="title-icon">📦</span>
-            <h2>หมวดหมู่สินค้า</h2>
-        </div>
-        <div class="category-grid" id="category-grid">
-            <!-- Categories will be loaded via JS -->
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <span class="title-icon">⚡</span>
-            <h2 id="products-heading">สินค้าแนะนำ</h2>
-            <a href="#" class="view-all">ดูทั้งหมด ›</a>
-        </div>
-        <div id="products-grid" class="products-grid">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>กำลังโหลดสินค้า...</p>
             </div>
         </div>
     </section>
@@ -157,7 +103,8 @@
                 <div class="footer-grid">
                     <div class="footer-brand">
                         <h3>G-<span>STORE</span></h3>
-                        <p>G-STORE เพื่อนรู้ใจสายเกมเมอร์ จำหน่ายอุปกรณ์คอมพิวเตอร์ เกมมิ่งเกียร์ โน๊ตบุ๊ค อุปกรณ์ต่อพ่วง รับประกันทุกชิ้น บริการจัดสเปกคอมพิวเตอร์ตามการใช้งาน</p>
+                        <p>G-STORE เพื่อนรู้ใจสายเกมเมอร์ จำหน่ายอุปกรณ์คอมพิวเตอร์ เกมมิ่งเกียร์ โน๊ตบุ๊ค
+                            อุปกรณ์ต่อพ่วง รับประกันทุกชิ้น บริการจัดสเปกคอมพิวเตอร์ตามการใช้งาน</p>
                         <div class="footer-social">
                             <a href="#" title="Facebook">📘</a>
                             <a href="#" title="Line">💬</a>
@@ -189,7 +136,8 @@
                         <h4>ติดต่อเรา</h4>
                         <ul class="footer-contact">
                             <li><span class="contact-icon">📞</span> <a href="tel:021054757">02-105-4757</a></li>
-                            <li><span class="contact-icon">✉️</span> <a href="mailto:info@gstore.com">info@gstore.com</a></li>
+                            <li><span class="contact-icon">✉️</span> <a
+                                    href="mailto:info@gstore.com">info@gstore.com</a></li>
                             <li><span class="contact-icon">🕐</span> <a href="#">จันทร์-เสาร์ 10:00-19:00</a></li>
                             <li><span class="contact-icon">📍</span> <a href="#">กรุงเทพมหานคร</a></li>
                         </ul>

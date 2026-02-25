@@ -1,58 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | G-STORE</title>
+    <title>เข้าสู่ระบบ | G-STORE</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <div class="logo">G-STORE</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="form-container">
-            <h2 id="form-title">Login</h2>
-            <form id="auth-form">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%">Submit</button>
-            </form>
-            <p style="margin-top:1rem;text-align:center;">
-                <a href="#" id="toggle-auth" style="color:var(--text-highlight)">Need an account? Register</a>
-            </p>
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:021054757">📞 02-105-4757</a>
+                <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
         </div>
     </div>
 
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ค้นหาสินค้า...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span>เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
+                <li><a href="#">บทความ</a></li>
+                <li><a href="#">ติดต่อเรา</a></li>
+                <li><a href="#">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <section class="login-section">
+        <div class="form-container">
+            <h2 id="form-title">เข้าสู่ระบบ</h2>
+            <p class="form-subtitle">ยินดีต้อนรับสู่ G-STORE</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>ชื่อผู้ใช้</label>
+                    <input type="text" id="username" placeholder="กรอกชื่อผู้ใช้" required>
+                </div>
+                <div class="form-group">
+                    <label>รหัสผ่าน</label>
+                    <input type="password" id="password" placeholder="กรอกรหัสผ่าน" required>
+                </div>
+                <button type="submit" class="form-submit-btn">เข้าสู่ระบบ</button>
+            </form>
+            <p class="form-toggle">
+                <a href="#" id="toggle-auth">ยังไม่มีบัญชี? สมัครสมาชิก</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="app.js"></script>
     <script>
+        const API_URL_AUTH = 'http://localhost:8080/api';
         const form = document.getElementById('auth-form');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
         const toggleBtn = document.getElementById('toggle-auth');
         const formTitle = document.getElementById('form-title');
+        const subtitle = document.querySelector('.form-subtitle');
+        const submitBtn = form.querySelector('.form-submit-btn');
 
         let isLogin = true;
 
         toggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
             isLogin = !isLogin;
-            formTitle.textContent = isLogin ? 'Login' : 'Register';
-            toggleBtn.textContent = isLogin ? 'Need an account? Register' : 'Already have an account? Login';
+            formTitle.textContent = isLogin ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            subtitle.textContent = isLogin ? 'ยินดีต้อนรับสู่ G-STORE' : 'สร้างบัญชีใหม่ ง่ายๆ ไม่กี่ขั้นตอน';
+            submitBtn.textContent = isLogin ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            toggleBtn.textContent = isLogin ? 'ยังไม่มีบัญชี? สมัครสมาชิก' : 'มีบัญชีอยู่แล้ว? เข้าสู่ระบบ';
         });
 
         form.addEventListener('submit', async (e) => {
@@ -61,8 +125,11 @@
             const password = passwordInput.value;
             const action = isLogin ? 'login' : 'register';
 
+            submitBtn.textContent = 'กำลังดำเนินการ...';
+            submitBtn.disabled = true;
+
             try {
-                const response = await fetch(`${API_URL}/auth.php?action=${action}`, {
+                const response = await fetch(`${API_URL_AUTH}/auth.php?action=${action}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -75,17 +142,22 @@
                         localStorage.setItem('user', JSON.stringify(result.user));
                         window.location.href = 'index.html';
                     } else {
-                        alert('Registration successful! Please login.');
+                        alert('สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ');
                         isLogin = true;
-                        formTitle.textContent = 'Login';
-                        toggleBtn.textContent = 'Need an account? Register';
+                        formTitle.textContent = 'เข้าสู่ระบบ';
+                        subtitle.textContent = 'ยินดีต้อนรับสู่ G-STORE';
+                        submitBtn.textContent = 'เข้าสู่ระบบ';
+                        toggleBtn.textContent = 'ยังไม่มีบัญชี? สมัครสมาชิก';
                     }
                 } else {
                     alert(result.message);
                 }
             } catch (error) {
                 console.error(error);
-                alert('An error occurred.');
+                alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = isLogin ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
             }
         });
     </script>

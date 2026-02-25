@@ -1,55 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart | G-STORE</title>
+    <title>ตะกร้าสินค้า | G-STORE</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body data-page="cart">
-    <header>
-        <div class="logo">G-STORE</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-            </ul>
-        </nav>
-        <div class="nav-right">
-            <span id="user-display"></span>
-            <a href="cart.html" class="btn btn-primary">Cart <span id="cart-count">(0)</span></a>
-            <button id="logout-btn" onclick="logout()" class="btn hidden">Logout</button>
-        </div>
-    </header>
-
-    <div class="container">
-        <h1>Your Cart</h1>
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <!-- Cart items here -->
-            </tbody>
-        </table>
-
-        <div class="cart-total">
-            Total: ฿<span id="cart-total">0.00</span>
-        </div>
-
-        <div style="text-align:right">
-            <a href="index.html" class="btn">Continue Shopping</a>
-            <button onclick="checkout()" class="btn btn-primary">Checkout</button>
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:021054757">📞 02-105-4757</a>
+                <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
         </div>
     </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ค้นหาสินค้า...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" id="login-btn" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span id="user-display">เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+                <button id="logout-btn" onclick="logout()" class="btn btn-outline hidden">ออกจากระบบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
+                <li><a href="#">บทความ</a></li>
+                <li><a href="#">ติดต่อเรา</a></li>
+                <li><a href="#">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Content -->
+    <section class="cart-section">
+        <div class="section-title">
+            <span class="title-icon">🛒</span>
+            <h2>ตะกร้าสินค้า</h2>
+        </div>
+
+        <div class="cart-container">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>สินค้า</th>
+                        <th>ชื่อสินค้า</th>
+                        <th>ราคา</th>
+                        <th>จำนวน</th>
+                        <th>รวม</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Cart items here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cart-summary">
+            <div class="cart-total-text">
+                ยอดรวมทั้งหมด: <span class="cart-total-price">฿<span id="cart-total">0</span></span>
+            </div>
+            <div class="cart-actions">
+                <a href="index.html" class="btn btn-outline">← เลือกซื้อสินค้าต่อ</a>
+                <button onclick="checkout()" class="btn btn-primary">🛒 ชำระเงิน</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h3>G-<span>STORE</span></h3>
+                        <p>G-STORE เพื่อนรู้ใจสายเกมเมอร์ จำหน่ายอุปกรณ์คอมพิวเตอร์ เกมมิ่งเกียร์ รับประกันทุกชิ้น</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>เกี่ยวกับเรา</h4>
+                        <ul>
+                            <li><a href="#">เกี่ยวกับ G-STORE</a></li>
+                            <li><a href="#">ข้อกำหนดและเงื่อนไข</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>บริการลูกค้า</h4>
+                        <ul>
+                            <li><a href="#">การจัดส่งสินค้า</a></li>
+                            <li><a href="#">การรับประกันสินค้า</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>ติดต่อเรา</h4>
+                        <ul class="footer-contact">
+                            <li><span class="contact-icon">📞</span> <a href="tel:021054757">02-105-4757</a></li>
+                            <li><span class="contact-icon">✉️</span> <a
+                                    href="mailto:info@gstore.com">info@gstore.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>
