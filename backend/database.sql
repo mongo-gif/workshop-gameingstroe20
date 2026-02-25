@@ -45,8 +45,8 @@ INSERT INTO users (username, password, role) VALUES
 ('user', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'customer'); -- password: 'password'
 
 INSERT INTO products (name, description, price, image_url, stock, category) VALUES 
-('Razer DeathAdder V3', 'Ultra-lightweight ergonomic esports mouse', 2490.00, 'https://placehold.co/600x400/1a1a1a/00ff00?text=Mouse', 50, 'Mouse'),
-('Logitech G Pro X Keyboard', 'Mechanical gaming keyboard with swappable switches', 4590.00, 'https://placehold.co/600x400/1a1a1a/00ff00?text=Keyboard', 30, 'Keyboard'),
-('HyperX Cloud II', 'Comfortable gaming headset with 7.1 surround sound', 3290.00, 'https://placehold.co/600x400/1a1a1a/00ff00?text=Headset', 40, 'Headset'),
-('Secretlab Titan Evo', 'Premium gaming chair for ultimate comfort', 18900.00, 'https://placehold.co/600x400/1a1a1a/00ff00?text=Chair', 10, 'Chair'),
-('BenQ ZOWIE XL2546K', '240Hz Gaming Monitor for Esports', 19900.00, 'https://placehold.co/600x400/1a1a1a/00ff00?text=Monitor', 15, 'Monitor');
+('Razer DeathAdder V3', 'Ultra-lightweight ergonomic esports mouse', 2490.00, 'images/mouse.png', 50, 'Mouse'),
+('Logitech G Pro X Keyboard', 'Mechanical gaming keyboard with swappable switches', 4590.00, 'images/keyboard.png', 30, 'Keyboard'),
+('HyperX Cloud II', 'Comfortable gaming headset with 7.1 surround sound', 3290.00, 'images/headset.png', 40, 'Headset'),
+('Secretlab Titan Evo', 'Premium gaming chair for ultimate comfort', 18900.00, 'images/chair.png', 10, 'Chair'),
+('BenQ ZOWIE XL2546K', '240Hz Gaming Monitor for Esports', 19900.00, 'images/monitor.png', 15, 'Monitor');

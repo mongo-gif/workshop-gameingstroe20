@@ -17,9 +17,11 @@ $password = getenv('DB_PASS') ?: 'root';
 
 try {
     $conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $conn->exec("set names utf8");
 } catch(PDOException $exception) {
-    echo "Connection error: " . $exception->getMessage();
+    http_response_code(500);
+    echo json_encode(["message" => "Connection error: " . $exception->getMessage()]);
     exit();
 }
 ?>
