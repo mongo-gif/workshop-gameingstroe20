@@ -2569,6 +2569,79 @@ footer {
     color: var(--text-medium);
 }
 
+.pd-specs-section,
+.pd-features-section {
+    margin-top: 24px;
+    background: var(--bg-white);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.pd-specs-section h3,
+.pd-features-section h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary-red);
+    display: inline-block;
+}
+
+.pd-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 24px;
+}
+
+.pd-spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+}
+
+.pd-spec-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+
+.pd-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pd-features-list li {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.8;
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+}
+
+.pd-features-list li::before {
+    content: '⭐';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.85rem;
+}
+
+.pd-features-list li:last-child {
+    margin-bottom: 0;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .footer-grid {

@@ -602,13 +602,61 @@ function renderProductDetail(product) {
                 </div>
             </div>
         </div>
-        ${product.description ? `
-        <div class="pd-description">
-            <h3>📋 รายละเอียดสินค้า</h3>
-            <p>${product.description}</p>
-        </div>` : ''}
+        ${product.description ? renderProductDescription(product.description) : ''}
     `;
 }
+
+function renderProductDescription(description) {
+    // Parse description format: "overview||สเปค: spec1 / spec2||จุดเด่น: ✦ feat1 ✦ feat2"
+    const sections = description.split('||');
+    const overview = sections[0] || '';
+    const specsRaw = sections[1] || '';
+    const featuresRaw = sections[2] || '';
+
+    // Parse specs
+    let specsHtml = '';
+    if (specsRaw) {
+        const specsLabel = specsRaw.replace(/^สเปค:\s*/, '');
+        const specItems = specsLabel.split(' / ').filter(s => s.trim());
+        specsHtml = `
+        <div class="pd-specs-section">
+            <h3>🔧 สเปคสินค้า</h3>
+            <div class="pd-specs-grid">
+                ${specItems.map(spec => {
+            const trimmed = spec.trim();
+            return `<div class="pd-spec-item">
+                        <span class="pd-spec-dot"></span>
+                        <span>${trimmed}</span>
+                    </div>`;
+        }).join('')}
+            </div>
+        </div>`;
+    }
+
+    // Parse features
+    let featuresHtml = '';
+    if (featuresRaw) {
+        const featLabel = featuresRaw.replace(/^จุดเด่น:\s*/, '');
+        const featItems = featLabel.split('✦').filter(s => s.trim());
+        featuresHtml = `
+        <div class="pd-features-section">
+            <h3>⭐ จุดเด่น</h3>
+            <ul class="pd-features-list">
+                ${featItems.map(feat => `<li>${feat.trim()}</li>`).join('')}
+            </ul>
+        </div>`;
+    }
+
+    return `
+    <div class="pd-description">
+        <h3>📋 รายละเอียดสินค้า</h3>
+        <p class="pd-overview">${overview}</p>
+    </div>
+    ${specsHtml}
+    ${featuresHtml}
+    `;
+}
+
 
 function changeQty(delta) {
     pdQty = Math.max(1, pdQty + delta);
