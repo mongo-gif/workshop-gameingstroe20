@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก | G-STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:021054757">📞 02-105-4757</a>
+                <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ค้นหาสินค้า...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span>เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
+                <li><a href="#">บทความ</a></li>
+                <li><a href="#">ติดต่อเรา</a></li>
+                <li><a href="#">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Register Form -->
+    <section class="login-section">
+        <div class="form-container">
+            <div class="form-icon">🎮</div>
+            <h2>สมัครสมาชิก</h2>
+            <p class="form-subtitle">สร้างบัญชีใหม่ ง่ายๆ ไม่กี่ขั้นตอน</p>
+
+            <div id="register-message" class="form-message hidden"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-username">👤 ชื่อผู้ใช้ <span class="required">*</span></label>
+                    <input type="text" id="reg-username" placeholder="กรอกชื่อผู้ใช้ (ภาษาอังกฤษ)" required
+                        minlength="3" maxlength="50" pattern="[a-zA-Z0-9_]+"
+                        title="ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษ ตัวเลข หรือ _ เท่านั้น">
+                    <small class="form-hint">ใช้ตัวอักษร a-z, 0-9 หรือ _ อย่างน้อย 3 ตัวอักษร</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-email">✉️ อีเมล <span class="required">*</span></label>
+                    <input type="email" id="reg-email" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-password">🔒 รหัสผ่าน <span class="required">*</span></label>
+                    <input type="password" id="reg-password" placeholder="กรอกรหัสผ่าน" required minlength="6">
+                    <small class="form-hint">อย่างน้อย 6 ตัวอักษร</small>
+                    <div class="password-strength" id="password-strength">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                    <small class="strength-text" id="strength-text"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-confirm-password">🔒 ยืนยันรหัสผ่าน <span class="required">*</span></label>
+                    <input type="password" id="reg-confirm-password" placeholder="กรอกรหัสผ่านอีกครั้ง" required
+                        minlength="6">
+                </div>
+
+                <div class="form-group form-checkbox">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="reg-agree" required>
+                        <span class="checkmark"></span>
+                        ยอมรับ <a href="#" class="form-link">ข้อกำหนดและเงื่อนไข</a> และ <a href="#"
+                            class="form-link">นโยบายความเป็นส่วนตัว</a>
+                    </label>
+                </div>
+
+                <button type="submit" id="register-submit-btn" class="form-submit-btn">
+                    ✨ สมัครสมาชิก
+                </button>
+            </form>
+
+            <p class="form-toggle">
+                มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบ</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        const API_URL_REG = 'http://localhost:8080/api';
+        const regForm = document.getElementById('register-form');
+        const regUsername = document.getElementById('reg-username');
+        const regEmail = document.getElementById('reg-email');
+        const regPassword = document.getElementById('reg-password');
+        const regConfirmPassword = document.getElementById('reg-confirm-password');
+        const regAgree = document.getElementById('reg-agree');
+        const regSubmitBtn = document.getElementById('register-submit-btn');
+        const regMessage = document.getElementById('register-message');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
+
+        // Password strength checker
+        regPassword.addEventListener('input', () => {
+            const val = regPassword.value;
+            let score = 0;
+            let text = '';
+            let color = '';
+
+            if (val.length >= 6) score++;
+            if (val.length >= 10) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^a-zA-Z0-9]/.test(val)) score++;
+
+            if (val.length === 0) {
+                strengthBar.style.width = '0%';
+                strengthText.textContent = '';
+                return;
+            }
+
+            if (score <= 1) { text = '⚠️ อ่อน'; color = '#e53935'; }
+            else if (score <= 2) { text = '🔶 ปานกลาง'; color = '#ff9800'; }
+            else if (score <= 3) { text = '✅ ดี'; color = '#4caf50'; }
+            else { text = '🛡️ แข็งแรงมาก'; color = '#00c853'; }
+
+            strengthBar.style.width = `${(score / 5) * 100}%`;
+            strengthBar.style.background = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+        });
+
+        // Show message helper
+        function showMessage(text, type) {
+            regMessage.textContent = text;
+            regMessage.className = `form-message ${type}`;
+            regMessage.classList.remove('hidden');
+            setTimeout(() => {
+                regMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Form submit
+        regForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validate passwords match
+            if (regPassword.value !== regConfirmPassword.value) {
+                showMessage('รหัสผ่านทั้งสองช่องไม่ตรงกัน กรุณากรอกใหม่', 'error');
+                regConfirmPassword.focus();
+                return;
+            }
+
+            // Validate password strength
+            if (regPassword.value.length < 6) {
+                showMessage('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร', 'error');
+                regPassword.focus();
+                return;
+            }
+
+            // Validate agreement
+            if (!regAgree.checked) {
+                showMessage('กรุณายอมรับข้อกำหนดและเงื่อนไข', 'error');
+                return;
+            }
+
+            regSubmitBtn.textContent = '⏳ กำลังสมัครสมาชิก...';
+            regSubmitBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_URL_REG}/auth.php?action=register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: regUsername.value,
+                        email: regEmail.value,
+                        password: regPassword.value
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage('🎉 สมัครสมาชิกสำเร็จ! กำลังพาคุณไปหน้าเข้าสู่ระบบ...', 'success');
+                    regForm.reset();
+                    strengthBar.style.width = '0%';
+                    strengthText.textContent = '';
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    showMessage(result.message || 'ไม่สามารถสมัครสมาชิกได้ กรุณาลองใหม่', 'error');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                showMessage('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่ภายหลัง', 'error');
+            } finally {
+                regSubmitBtn.disabled = false;
+                regSubmitBtn.textContent = '✨ สมัครสมาชิก';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -132,8 +132,8 @@ img {
 
 /* Search Bar */
 .search-bar {
-    flex: 1;
-    max-width: 600px;
+    flex: 0 1 500px;
+    margin-left: auto;
     position: relative;
 }
 
@@ -1141,6 +1141,112 @@ footer {
 
 .form-toggle a:hover {
     text-decoration: underline;
+}
+
+/* Registration Form Enhancements */
+.form-icon {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+.form-hint {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+.required {
+    color: var(--primary-red);
+}
+
+.password-strength {
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.strength-text {
+    display: block;
+    font-size: 0.72rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.form-checkbox {
+    margin-top: 4px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--primary-red);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.form-link {
+    color: var(--primary-red);
+    font-weight: 500;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}
+
+.form-message {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-message.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.form-message.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ===== UTILITIES ===== */

@@ -69,21 +69,25 @@
     <!-- Login Form -->
     <section class="login-section">
         <div class="form-container">
-            <h2 id="form-title">เข้าสู่ระบบ</h2>
+            <div class="form-icon">🔐</div>
+            <h2>เข้าสู่ระบบ</h2>
             <p class="form-subtitle">ยินดีต้อนรับสู่ G-STORE</p>
+
+            <div id="login-message" class="form-message hidden"></div>
+
             <form id="auth-form">
                 <div class="form-group">
-                    <label>ชื่อผู้ใช้</label>
+                    <label for="username">👤 ชื่อผู้ใช้</label>
                     <input type="text" id="username" placeholder="กรอกชื่อผู้ใช้" required>
                 </div>
                 <div class="form-group">
-                    <label>รหัสผ่าน</label>
+                    <label for="password">🔒 รหัสผ่าน</label>
                     <input type="password" id="password" placeholder="กรอกรหัสผ่าน" required>
                 </div>
-                <button type="submit" class="form-submit-btn">เข้าสู่ระบบ</button>
+                <button type="submit" id="login-submit-btn" class="form-submit-btn">เข้าสู่ระบบ</button>
             </form>
             <p class="form-toggle">
-                <a href="#" id="toggle-auth">ยังไม่มีบัญชี? สมัครสมาชิก</a>
+                ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a>
             </p>
         </div>
     </section>
@@ -103,33 +107,26 @@
         const form = document.getElementById('auth-form');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
-        const toggleBtn = document.getElementById('toggle-auth');
-        const formTitle = document.getElementById('form-title');
-        const subtitle = document.querySelector('.form-subtitle');
-        const submitBtn = form.querySelector('.form-submit-btn');
+        const loginSubmitBtn = document.getElementById('login-submit-btn');
+        const loginMessage = document.getElementById('login-message');
 
-        let isLogin = true;
-
-        toggleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            isLogin = !isLogin;
-            formTitle.textContent = isLogin ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
-            subtitle.textContent = isLogin ? 'ยินดีต้อนรับสู่ G-STORE' : 'สร้างบัญชีใหม่ ง่ายๆ ไม่กี่ขั้นตอน';
-            submitBtn.textContent = isLogin ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
-            toggleBtn.textContent = isLogin ? 'ยังไม่มีบัญชี? สมัครสมาชิก' : 'มีบัญชีอยู่แล้ว? เข้าสู่ระบบ';
-        });
+        function showLoginMsg(text, type) {
+            loginMessage.textContent = text;
+            loginMessage.className = `form-message ${type}`;
+            loginMessage.classList.remove('hidden');
+            setTimeout(() => loginMessage.classList.add('hidden'), 5000);
+        }
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = usernameInput.value;
             const password = passwordInput.value;
-            const action = isLogin ? 'login' : 'register';
 
-            submitBtn.textContent = 'กำลังดำเนินการ...';
-            submitBtn.disabled = true;
+            loginSubmitBtn.textContent = '⏳ กำลังเข้าสู่ระบบ...';
+            loginSubmitBtn.disabled = true;
 
             try {
-                const response = await fetch(`${API_URL_AUTH}/auth.php?action=${action}`, {
+                const response = await fetch(`${API_URL_AUTH}/auth.php?action=login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -138,26 +135,18 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    if (isLogin) {
-                        localStorage.setItem('user', JSON.stringify(result.user));
-                        window.location.href = 'index.html';
-                    } else {
-                        alert('สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ');
-                        isLogin = true;
-                        formTitle.textContent = 'เข้าสู่ระบบ';
-                        subtitle.textContent = 'ยินดีต้อนรับสู่ G-STORE';
-                        submitBtn.textContent = 'เข้าสู่ระบบ';
-                        toggleBtn.textContent = 'ยังไม่มีบัญชี? สมัครสมาชิก';
-                    }
+                    localStorage.setItem('user', JSON.stringify(result.user));
+                    showLoginMsg('🎉 เข้าสู่ระบบสำเร็จ!', 'success');
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
                 } else {
-                    alert(result.message);
+                    showLoginMsg(result.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', 'error');
                 }
             } catch (error) {
                 console.error(error);
-                alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
+                showLoginMsg('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่', 'error');
             } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = isLogin ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+                loginSubmitBtn.disabled = false;
+                loginSubmitBtn.textContent = 'เข้าสู่ระบบ';
             }
         });
     </script>
