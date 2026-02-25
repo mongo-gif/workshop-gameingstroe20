@@ -725,3 +725,47 @@ function copyProductLink() {
         showToast('ไม่สามารถคัดลอกลิงก์ได้');
     });
 }
+
+// --- Theme Toggle ---
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+}
+
+function updateThemeIcon() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const icons = document.querySelectorAll('#theme-icon');
+    const texts = document.querySelectorAll('button#theme-toggle span:last-child');
+
+    icons.forEach(icon => {
+        icon.textContent = isDark ? '☀️' : '🌙';
+    });
+    texts.forEach(text => {
+        text.textContent = isDark ? 'โหมดสว่าง' : 'โหมดกลางคืน';
+    });
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    let targetTheme = 'light';
+
+    if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        targetTheme = 'light';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        targetTheme = 'dark';
+    }
+
+    localStorage.setItem('theme', targetTheme);
+    updateThemeIcon();
+}
+
+initTheme();
+document.addEventListener('DOMContentLoaded', () => {
+    updateThemeIcon();
+});

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-STORE | ร้านคอมพิวเตอร์ครบวงจร อุปกรณ์เกมมิ่ง</title>
+    <title>MR.Hoyjorz Gaming | ร้านคอมพิวเตอร์ครบวงจร อุปกรณ์เกมมิ่ง</title>
     <meta name="description"
-        content="G-STORE ร้านจำหน่ายคอมพิวเตอร์ อุปกรณ์เกมมิ่ง คีย์บอร์ด เมาส์ หูฟัง จอมอนิเตอร์ ราคาดี บริการหลังการขายเยี่ยม">
+        content="MR.Hoyjorz Gaming ร้านจำหน่ายคอมพิวเตอร์ อุปกรณ์เกมมิ่ง คีย์บอร์ด เมาส์ หูฟัง จอมอนิเตอร์ ราคาดี บริการหลังการขายเยี่ยม">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,7 +19,7 @@
                 <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
             </div>
             <div class="top-bar-center">
-                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — MR.Hoyjorz Gaming เพื่อนรู้ใจสายเกมเมอร์
             </div>
             <div class="top-bar-right">
                 <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
@@ -31,13 +31,17 @@
     <div class="main-header">
         <div class="container">
             <div class="logo">
-                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+                <a href="index.html">MR.Hoyjorz <span class="logo-highlight">Gaming</span></a>
             </div>
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="ค้นหาสินค้า...">
                 <button class="search-btn" onclick="searchProducts()">🔍</button>
             </div>
             <div class="header-actions">
+                <button id="theme-toggle" class="header-icon-btn" aria-label="Toggle Dark Mode" onclick="toggleTheme()" style="border:none; cursor:pointer; background:transparent;">
+                    <span class="icon" id="theme-icon">🌙</span>
+                    <span>สีหน้าจอ</span>
+                </button>
                 <a href="login.html" id="login-btn" class="header-icon-btn">
                     <span class="icon">👤</span>
                     <span id="user-display">เข้าสู่ระบบ</span>
@@ -60,7 +64,7 @@
             </button>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">หน้าแรก</a></li>
-                <li><a href="#products">สินค้าทั้งหมด</a></li>
+                <li><a href="category.html">สินค้าทั้งหมด</a></li>
                 <li><a href="#categories">หมวดหมู่</a></li>
                 <li><a href="blog.html">บทความ</a></li>
                 <li><a href="contact.html">ติดต่อเรา</a></li>
@@ -157,8 +161,8 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <h3>G-<span>STORE</span></h3>
-                        <p>G-STORE เพื่อนรู้ใจสายเกมเมอร์ จำหน่ายอุปกรณ์คอมพิวเตอร์ เกมมิ่งเกียร์ โน๊ตบุ๊ค
+                        <h3>MR.Hoyjorz <span>Gaming</span></h3>
+                        <p>MR.Hoyjorz Gaming เพื่อนรู้ใจสายเกมเมอร์ จำหน่ายอุปกรณ์คอมพิวเตอร์ เกมมิ่งเกียร์ โน๊ตบุ๊ค
                             อุปกรณ์ต่อพ่วง รับประกันทุกชิ้น บริการจัดสเปกคอมพิวเตอร์ตามการใช้งาน</p>
                         <div class="footer-social">
                             <a href="#" title="Facebook">📘</a>
@@ -171,7 +175,7 @@
                     <div class="footer-col">
                         <h4>เกี่ยวกับเรา</h4>
                         <ul>
-                            <li><a href="about.html">เกี่ยวกับ G-STORE</a></li>
+                            <li><a href="about.html">เกี่ยวกับ MR.Hoyjorz Gaming</a></li>
                             <li><a href="#">ข้อกำหนดและเงื่อนไข</a></li>
                             <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
                             <li><a href="blog.html">บทความ</a></li>
@@ -202,7 +206,7 @@
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+                <p>&copy; 2026 MR.Hoyjorz Gaming. All rights reserved.</p>
                 <div class="footer-payment">
                     <span class="pay-icon">VISA</span>
                     <span class="pay-icon">MasterCard</span>
