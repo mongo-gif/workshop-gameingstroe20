@@ -5,6 +5,8 @@ import urllib.request
 import urllib.parse
 import re
 import json
+import itertools
+from typing import List, Tuple
 
 OUTPUT_DIR = './frontend/assets/images/products'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -19,7 +21,7 @@ HEADERS = {
     'Accept-Language': 'en-US,en;q=0.9',
 }
 
-PRODUCTS = [
+PRODUCTS: List[Tuple[str, str]] = [
     ('razer_deathadder_v3.jpg', 'Razer DeathAdder V3 official product white background'),
     ('logitech_g_pro_x_superlight_2.jpg', 'Logitech G Pro X Superlight 2 official product white background'),
     ('steelseries_aerox_5.jpg', 'SteelSeries Aerox 5 wireless mouse official white background'),
@@ -50,9 +52,9 @@ PRODUCTS = [
     ('lian_li_o11_dynamic_evo.jpg', 'Lian Li O11 Dynamic EVO pc case official white background'),
 ]
 
-BANNED_DOMAINS = ['youtube.com', 'pinterest.com', 'shopee', 'lazada', 'carousell', 'reddit.com']
+BANNED_DOMAINS: List[str] = ['youtube.com', 'pinterest.com', 'shopee', 'lazada', 'carousell', 'reddit.com']
 
-def download_image(url, dest):
+def download_image(url: str, dest: str) -> int:
     try:
         req = urllib.request.Request(url, headers={'User-Agent': HEADERS['User-Agent']})
         with urllib.request.urlopen(req, timeout=10, context=ctx) as r:
@@ -67,7 +69,7 @@ def download_image(url, dest):
     except Exception:
         return 0
 
-def get_bing_images(query):
+def get_bing_images(query: str) -> List[str]:
     url = f'https://www.bing.com/images/search?q={urllib.parse.quote(query)}&form=HDRSC3'
     req = urllib.request.Request(url, headers=HEADERS)
     try:
@@ -80,19 +82,19 @@ def get_bing_images(query):
         return []
 
 def main():
-    ok = 0
-    failed = []
+    succeeded: List[str] = []
+    failed: List[str] = []
     
     print(f'Starting download of {len(PRODUCTS)} images via Bing Image Search...\n')
     
     for filename, query in PRODUCTS:
-        print(f'Searching: {query[:50]}...')
+        print(f'Searching: {query}...')
         dest = os.path.join(OUTPUT_DIR, filename)
         success = False
         
         if os.path.exists(dest) and os.path.getsize(dest) > 15000:
             print(f'  Already downloaded: {filename}')
-            ok += 1
+            succeeded.append(filename)
             continue
             
         urls = get_bing_images(query)
@@ -101,7 +103,9 @@ def main():
             failed.append(filename)
             continue
             
-        for url in urls[:10]: # Try top 10 results
+        for i, url in enumerate(urls): # Try top 10 results
+            if i >= 10:
+                break
             is_banned = any(b in url.lower() for b in BANNED_DOMAINS)
             if is_banned or not (url.lower().endswith('.jpg') or url.lower().endswith('.png') or url.lower().endswith('.jpeg')):
                 continue
@@ -118,8 +122,9 @@ def main():
             else:
                 print('  Failed or too small (skipping)')
         
+        
         if success:
-            ok += 1
+            succeeded.append(filename)
         else:
             try:
                 print(f'  FAILED ALL ATTEMPTS for {filename}')
@@ -130,7 +135,7 @@ def main():
         time.sleep(1)
         
     print('\n================================')
-    print(f'Downloaded: {ok}/{len(PRODUCTS)}')
+    print(f'Downloaded: {len(succeeded)}/{len(PRODUCTS)}')
     print('================================')
     if failed:
         print(f'Failed: {failed}')

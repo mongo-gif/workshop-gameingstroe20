@@ -5,6 +5,8 @@ import os
 import re
 import ssl
 import time
+import itertools
+from typing import List, Tuple
 
 OUTPUT_DIR = './frontend/assets/images/products'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -24,7 +26,7 @@ HEADERS_IMG = {
     'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
 }
 
-PRODUCTS = [
+PRODUCTS: List[Tuple[str, str]] = [
     ('razer_deathadder_v3.jpg', 'Razer DeathAdder V3'),
     ('logitech_g_pro_x_superlight_2.jpg', 'Logitech G Pro X Superlight 2'),
     ('steelseries_aerox_5.jpg', 'SteelSeries Aerox 5'),
@@ -56,7 +58,7 @@ PRODUCTS = [
 ]
 
 
-def fetch_html(url, referer=''):
+def fetch_html(url: str, referer: str = '') -> str:
     try:
         h = dict(HEADERS_BROWSE)
         if referer:
@@ -68,7 +70,7 @@ def fetch_html(url, referer=''):
         return ''
 
 
-def download_image(url, dest, referer=''):
+def download_image(url: str, dest: str, referer: str = '') -> int:
     try:
         h = dict(HEADERS_IMG)
         if referer:
@@ -87,7 +89,7 @@ def download_image(url, dest, referer=''):
         return 0
 
 
-def search_jib(product_name):
+def search_jib(product_name: str) -> List[str]:
     """Search JIB.co.th and extract product image URLs"""
     encoded = urllib.parse.quote(product_name)
     url = f'https://www.jib.co.th/web/product/product_search/0/0/0/{encoded}'
@@ -100,12 +102,14 @@ def search_jib(product_name):
     matches = re.findall(pattern, html)
     
     # Also look for product IDs in readProduct links
-    product_ids = re.findall(r'readProduct/(\d+)/', html)
+    product_ids: List[str] = re.findall(r'readProduct/(\d+)/', html)
     
     # Try to get images from product pages
     image_urls = list(set(matches))
     
-    for pid in product_ids[:2]:  # Only check first 2 product pages
+    for i, pid in enumerate(product_ids):  # Only check first 2 product pages
+        if i >= 2:
+            break
         purl = f'https://www.jib.co.th/web/product/readProduct/{pid}'
         phtml = fetch_html(purl, 'https://www.jib.co.th/')
         if phtml:
@@ -116,7 +120,7 @@ def search_jib(product_name):
     return list(set(image_urls))
 
 
-def search_advice(product_name):
+def search_advice(product_name: str) -> List[str]:
     """Search Advice.co.th and extract product image URLs"""
     encoded = urllib.parse.quote(product_name)
     url = f'https://www.advice.co.th/search?q={encoded}'
@@ -137,7 +141,7 @@ def search_advice(product_name):
     return list(set(matches))
 
 
-def search_ihavecpu(product_name):
+def search_ihavecpu(product_name: str) -> List[str]:
     """Search iHaveCPU.com and extract product image URLs"""
     encoded = urllib.parse.quote(product_name)
     url = f'https://www.ihavecpu.com/search?q={encoded}'
@@ -153,12 +157,12 @@ def search_ihavecpu(product_name):
 
 def main():
     print(f'Searching and downloading images for {len(PRODUCTS)} products...\n')
-    ok = 0
-    failed = []
+    succeeded: List[str] = []
+    failed: List[Tuple[str, str]] = []
 
-    for filename, product_name in PRODUCTS:
+    for idx, (filename, product_name) in enumerate(PRODUCTS, 1):
         dest = os.path.join(OUTPUT_DIR, filename)
-        print(f'[{ok+len(failed)+1}/{len(PRODUCTS)}] {product_name}')
+        print(f'[{idx}/{len(PRODUCTS)}] {product_name}')
         
         success = False
         
@@ -166,7 +170,9 @@ def main():
         print(f'  Searching JIB...')
         jib_urls = search_jib(product_name)
         if jib_urls:
-            for img_url in jib_urls[:3]:
+            for i, img_url in enumerate(jib_urls):
+                if i >= 3:
+                    break
                 size = download_image(img_url, dest, 'https://www.jib.co.th/')
                 if size > 5000:
                     print(f'  OK from JIB ({size//1024}KB)')
@@ -178,7 +184,9 @@ def main():
             print(f'  Searching Advice...')
             advice_urls = search_advice(product_name)
             if advice_urls:
-                for img_url in advice_urls[:3]:
+                for i, img_url in enumerate(advice_urls):
+                    if i >= 3:
+                        break
                     size = download_image(img_url, dest, 'https://www.advice.co.th/')
                     if size > 5000:
                         print(f'  OK from Advice ({size//1024}KB)')
@@ -190,15 +198,16 @@ def main():
             print(f'  Searching iHaveCPU...')
             ihc_urls = search_ihavecpu(product_name)
             if ihc_urls:
-                for img_url in ihc_urls[:3]:
+                for i, img_url in enumerate(ihc_urls):
+                    if i >= 3:
+                        break
                     size = download_image(img_url, dest, 'https://www.ihavecpu.com/')
                     if size > 5000:
                         print(f'  OK from iHaveCPU ({size//1024}KB)')
                         success = True
                         break
-        
         if success:
-            ok += 1
+            succeeded.append(product_name)
         else:
             failed.append((filename, product_name))
             print(f'  FAILED')
@@ -206,7 +215,7 @@ def main():
         time.sleep(0.5)
     
     print(f'\n{"="*50}')
-    print(f'Downloaded: {ok}/{len(PRODUCTS)}')
+    print(f'Downloaded: {len(succeeded)}/{len(PRODUCTS)}')
     if failed:
         print(f'Failed ({len(failed)}):')
         for f, n in failed:
