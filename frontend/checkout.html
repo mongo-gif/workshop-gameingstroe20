@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระเงิน | G-STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="checkout">
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:021054757">📞 02-105-4757</a>
+                <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ค้นหาสินค้า...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" id="login-btn" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span id="user-display">เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+                <button id="logout-btn" onclick="logout()" class="btn btn-outline hidden">ออกจากระบบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html#categories'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
+                <li><a href="#">บทความ</a></li>
+                <li><a href="#">ติดต่อเรา</a></li>
+                <li><a href="#">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Checkout Steps -->
+    <div class="checkout-steps">
+        <div class="container">
+            <div class="step completed">
+                <span class="step-num">✓</span>
+                <span class="step-label">ตะกร้าสินค้า</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step active">
+                <span class="step-num">2</span>
+                <span class="step-label">ชำระเงิน</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <span class="step-num">3</span>
+                <span class="step-label">สำเร็จ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Content -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Left: Shipping & Payment -->
+                <div class="checkout-left">
+                    <!-- Shipping Info -->
+                    <div class="checkout-card">
+                        <h3>📦 ข้อมูลการจัดส่ง</h3>
+                        <form id="checkout-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ship-name">ชื่อ-นามสกุล <span class="required">*</span></label>
+                                    <input type="text" id="ship-name" placeholder="กรอกชื่อ-นามสกุล" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ship-phone">เบอร์โทรศัพท์ <span class="required">*</span></label>
+                                    <input type="tel" id="ship-phone" placeholder="08x-xxx-xxxx" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ship-address">ที่อยู่ <span class="required">*</span></label>
+                                <textarea id="ship-address" rows="3" placeholder="บ้านเลขที่ หมู่ ซอย ถนน"
+                                    required></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ship-district">แขวง/ตำบล <span class="required">*</span></label>
+                                    <input type="text" id="ship-district" placeholder="แขวง/ตำบล" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ship-amphoe">เขต/อำเภอ <span class="required">*</span></label>
+                                    <input type="text" id="ship-amphoe" placeholder="เขต/อำเภอ" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ship-province">จังหวัด <span class="required">*</span></label>
+                                    <input type="text" id="ship-province" placeholder="จังหวัด" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ship-zipcode">รหัสไปรษณีย์ <span class="required">*</span></label>
+                                    <input type="text" id="ship-zipcode" placeholder="10xxx" required maxlength="5"
+                                        pattern="[0-9]{5}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ship-note">หมายเหตุ (ถ้ามี)</label>
+                                <input type="text" id="ship-note" placeholder="เช่น ส่งช่วงบ่าย, ฝากที่ล็อบบี้">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="checkout-card">
+                        <h3>💳 วิธีชำระเงิน</h3>
+                        <div class="payment-methods">
+                            <label class="payment-option selected" id="pay-transfer">
+                                <input type="radio" name="payment" value="transfer" checked>
+                                <div class="payment-content">
+                                    <span class="payment-icon">🏦</span>
+                                    <div>
+                                        <strong>โอนเงินผ่านธนาคาร</strong>
+                                        <small>โอนเงินเข้าบัญชี แล้วแนบสลิป</small>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="payment-option" id="pay-promptpay">
+                                <input type="radio" name="payment" value="promptpay">
+                                <div class="payment-content">
+                                    <span class="payment-icon">📱</span>
+                                    <div>
+                                        <strong>PromptPay / QR Code</strong>
+                                        <small>สแกน QR Code เพื่อชำระเงิน</small>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="payment-option" id="pay-cod">
+                                <input type="radio" name="payment" value="cod">
+                                <div class="payment-content">
+                                    <span class="payment-icon">📦</span>
+                                    <div>
+                                        <strong>เก็บเงินปลายทาง (COD)</strong>
+                                        <small>ชำระเงินเมื่อได้รับสินค้า</small>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="payment-option" id="pay-credit">
+                                <input type="radio" name="payment" value="credit">
+                                <div class="payment-content">
+                                    <span class="payment-icon">💳</span>
+                                    <div>
+                                        <strong>บัตรเครดิต / เดบิต</strong>
+                                        <small>VISA, MasterCard, JCB</small>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Order Summary -->
+                <div class="checkout-right">
+                    <div class="checkout-card order-summary-card">
+                        <h3>📋 สรุปคำสั่งซื้อ</h3>
+                        <div id="checkout-items">
+                            <!-- Items loaded by JS -->
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row">
+                            <span>ยอดรวมสินค้า</span>
+                            <span id="summary-subtotal">฿0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>ค่าจัดส่ง</span>
+                            <span id="summary-shipping" class="shipping-free">ฟรี</span>
+                        </div>
+                        <div class="summary-row discount-row hidden" id="discount-row">
+                            <span>ส่วนลด</span>
+                            <span id="summary-discount">-฿0</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total-row">
+                            <span>ยอดชำระทั้งหมด</span>
+                            <span id="summary-total">฿0</span>
+                        </div>
+                        <button id="place-order-btn" class="btn btn-primary place-order-btn" onclick="placeOrder()">
+                            ✅ ยืนยันสั่งซื้อ
+                        </button>
+                        <a href="cart.html" class="back-to-cart">← กลับไปตะกร้าสินค้า</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Load checkout items
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCheckoutSummary();
+            setupPaymentMethods();
+        });
+
+        function loadCheckoutSummary() {
+            const itemsContainer = document.getElementById('checkout-items');
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalEl = document.getElementById('summary-total');
+
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            let total = 0;
+            itemsContainer.innerHTML = cart.map(item => {
+                const itemTotal = parseFloat(item.price) * item.quantity;
+                total += itemTotal;
+                return `
+                    <div class="summary-item">
+                        <img src="${item.image_url}" alt="${item.name}" class="summary-item-img"
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23f5f5f5%22 width=%2260%22 height=%2260%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23ccc%22 font-size=%2220%22>📦</text></svg>'">
+                        <div class="summary-item-info">
+                            <span class="summary-item-name">${item.name}</span>
+                            <span class="summary-item-qty">x${item.quantity}</span>
+                        </div>
+                        <span class="summary-item-price">฿${itemTotal.toLocaleString()}</span>
+                    </div>`;
+            }).join('');
+
+            subtotalEl.textContent = `฿${total.toLocaleString()}`;
+            totalEl.textContent = `฿${total.toLocaleString()}`;
+        }
+
+        function setupPaymentMethods() {
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                });
+            });
+        }
+
+        async function placeOrder() {
+            if (!user) {
+                alert('กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Validate form
+            const form = document.getElementById('checkout-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const btn = document.getElementById('place-order-btn');
+            btn.textContent = '⏳ กำลังดำเนินการ...';
+            btn.disabled = true;
+
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            const orderData = {
+                user_id: user.id,
+                items: cart,
+                shipping: {
+                    name: document.getElementById('ship-name').value,
+                    phone: document.getElementById('ship-phone').value,
+                    address: document.getElementById('ship-address').value,
+                    district: document.getElementById('ship-district').value,
+                    amphoe: document.getElementById('ship-amphoe').value,
+                    province: document.getElementById('ship-province').value,
+                    zipcode: document.getElementById('ship-zipcode').value,
+                    note: document.getElementById('ship-note').value
+                },
+                payment_method: paymentMethod
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/orders.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    cart = [];
+                    saveCart();
+                    // Show success
+                    document.querySelector('.checkout-section').innerHTML = `
+                        <div class="container">
+                            <div class="order-success">
+                                <div class="success-icon">🎉</div>
+                                <h2>สั่งซื้อสำเร็จ!</h2>
+                                <p>ขอบคุณที่ใช้บริการ G-STORE</p>
+                                <p class="order-id-text">หมายเลขคำสั่งซื้อ: <strong>#${result.order_id || '---'}</strong></p>
+                                <div class="success-actions">
+                                    <a href="orders.html" class="btn btn-primary">📋 ดูประวัติการสั่งซื้อ</a>
+                                    <a href="index.html" class="btn btn-outline">🏠 กลับหน้าแรก</a>
+                                </div>
+                            </div>
+                        </div>`;
+                    // Update steps
+                    document.querySelectorAll('.step').forEach(s => s.classList.add('completed'));
+                    document.querySelectorAll('.step')[2].classList.add('active');
+                } else {
+                    alert(result.message || 'ไม่สามารถสั่งซื้อได้ กรุณาลองใหม่');
+                }
+            } catch (error) {
+                console.error('Order error:', error);
+                alert('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '✅ ยืนยันสั่งซื้อ';
+            }
+        }
+    </script>
+</body>
+
+</html>

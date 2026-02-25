@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา | G-STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:0924416570">📞 092-441-6570</a>
+                <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ค้นหาสินค้า...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" id="login-btn" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span id="user-display">เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+                <button id="logout-btn" onclick="logout()" class="btn btn-outline hidden">ออกจากระบบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html#categories'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
+                <li><a href="blog.html">บทความ</a></li>
+                <li><a href="contact.html" class="active">ติดต่อเรา</a></li>
+                <li><a href="about.html">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Content -->
+    <section class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>📞 ติดต่อเรา</h1>
+                <p>ต้องการสอบถามข้อมูลหรือขอคำปรึกษา? ทีมงาน G-STORE พร้อมให้บริการคุณ</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info Cards -->
+                <div class="contact-info-side">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📱</div>
+                        <h3>โทรศัพท์</h3>
+                        <a href="tel:0924416570" class="contact-link">092-441-6570</a>
+                        <p>จันทร์ - เสาร์ 09:00 - 20:00 น.</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📸</div>
+                        <h3>Instagram</h3>
+                        <a href="https://www.instagram.com/pxpxr_2840/" target="_blank"
+                            class="contact-link">@pxpxr_2840</a>
+                        <p>ติดตามข่าวสาร โปรโมชั่น และอัปเดตสินค้าใหม่</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">✉️</div>
+                        <h3>อีเมล</h3>
+                        <a href="mailto:info@gstore.com" class="contact-link">info@gstore.com</a>
+                        <p>ตอบกลับภายใน 24 ชั่วโมง</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📍</div>
+                        <h3>ที่อยู่</h3>
+                        <p class="contact-address">G-STORE Gaming<br>กรุงเทพมหานคร ประเทศไทย</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-side">
+                    <div class="checkout-card">
+                        <h3>💬 ส่งข้อความถึงเรา</h3>
+                        <form id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name">ชื่อ-นามสกุล <span class="required">*</span></label>
+                                    <input type="text" id="contact-name" placeholder="กรอกชื่อ-นามสกุล" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email">อีเมล <span class="required">*</span></label>
+                                    <input type="email" id="contact-email" placeholder="example@email.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">หัวข้อ <span class="required">*</span></label>
+                                <input type="text" id="contact-subject" placeholder="หัวข้อที่ต้องการติดต่อ" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">ข้อความ <span class="required">*</span></label>
+                                <textarea id="contact-message" rows="5" placeholder="กรอกรายละเอียดที่ต้องการสอบถาม..."
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-btn">📤 ส่งข้อความ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit-btn');
+            btn.textContent = '⏳ กำลังส่ง...';
+            btn.disabled = true;
+            setTimeout(() => {
+                e.target.innerHTML = `
+                    <div class="empty-state" style="padding:40px 0">
+                        <span class="empty-icon">✅</span>
+                        <p style="font-size:1.1rem;font-weight:600;color:#2e7d32">ส่งข้อความสำเร็จ!</p>
+                        <p style="color:#666;margin-top:8px">ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง</p>
+                    </div>`;
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทความ | G-STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:0924416570">📞 092-441-6570</a>
+                <a href="mailto:info@gstore.com">✉️ info@gstore.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ค้นหาสินค้า...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" id="login-btn" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span id="user-display">เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+                <button id="logout-btn" onclick="logout()" class="btn btn-outline hidden">ออกจากระบบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='index.html#categories'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="index.html#categories">หมวดหมู่</a></li>
+                <li><a href="blog.html" class="active">บทความ</a></li>
+                <li><a href="contact.html">ติดต่อเรา</a></li>
+                <li><a href="about.html">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Blog Content -->
+    <section class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>📝 บทความ</h1>
+                <p>อัปเดตข่าวสาร เทคนิค และเทรนด์เกมมิ่งล่าสุด</p>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Article 1 -->
+                <article class="blog-card">
+                    <div class="blog-card-img" style="background:linear-gradient(135deg,#e31e25 0%,#1a1a2e 100%)">
+                        <span class="blog-emoji">🖱️</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span class="blog-category">เมาส์</span>
+                            <span class="blog-date">25 ก.พ. 2026</span>
+                        </div>
+                        <h3>วิธีเลือกเมาส์เกมมิ่งที่เหมาะกับคุณ</h3>
+                        <p>เมาส์เกมมิ่งมีหลายแบบ ทั้ง Ergonomic, Ambidextrous, น้ำหนักเบา หรือหนัก
+                            แต่ละแบบเหมาะกับเกมประเภทต่างกัน มาดูว่าแบบไหนเหมาะกับคุณ...</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">เมาส์</span>
+                            <span class="blog-tag">แนะนำ</span>
+                            <span class="blog-tag">FPS</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card">
+                    <div class="blog-card-img" style="background:linear-gradient(135deg,#6c5ce7 0%,#1a1a2e 100%)">
+                        <span class="blog-emoji">⌨️</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span class="blog-category">คีย์บอร์ด</span>
+                            <span class="blog-date">23 ก.พ. 2026</span>
+                        </div>
+                        <h3>Mechanical vs Membrane คีย์บอร์ดแบบไหนดีกว่า?</h3>
+                        <p>คีย์บอร์ด Mechanical มี switch หลายแบบ ทั้ง Red, Blue, Brown แต่ละแบบให้ความรู้สึกต่างกัน
+                            เรามาเจาะลึกกันว่าแบบไหนเหมาะกับการใช้งานของคุณ...</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">คีย์บอร์ด</span>
+                            <span class="blog-tag">Mechanical</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card">
+                    <div class="blog-card-img" style="background:linear-gradient(135deg,#00b894 0%,#1a1a2e 100%)">
+                        <span class="blog-emoji">🖥️</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span class="blog-category">จอมอนิเตอร์</span>
+                            <span class="blog-date">20 ก.พ. 2026</span>
+                        </div>
+                        <h3>144Hz vs 240Hz vs 360Hz ความต่างที่รู้สึกได้จริง?</h3>
+                        <p>หลายคนสงสัยว่า Refresh Rate สูงขึ้นจะรู้สึกได้ต่างกันมากแค่ไหน?
+                            มาดูผลการเปรียบเทียบจากเกมเมอร์ตัวจริง...</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">จอมอนิเตอร์</span>
+                            <span class="blog-tag">Refresh Rate</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-card">
+                    <div class="blog-card-img" style="background:linear-gradient(135deg,#fd79a8 0%,#1a1a2e 100%)">
+                        <span class="blog-emoji">🎧</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span class="blog-category">หูฟัง</span>
+                            <span class="blog-date">18 ก.พ. 2026</span>
+                        </div>
+                        <h3>Top 5 หูฟังเกมมิ่งยอดนิยมปี 2026</h3>
+                        <p>รวมหูฟังเกมมิ่งที่ดีที่สุดในปีนี้ ทั้งแบบมีสายและไร้สาย เสียงดี ไมค์คุณภาพ สวมใส่สบาย
+                            เหมาะกับการเล่นเกมหลายชั่วโมง...</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">หูฟัง</span>
+                            <span class="blog-tag">รีวิว</span>
+                            <span class="blog-tag">Top 5</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-card">
+                    <div class="blog-card-img" style="background:linear-gradient(135deg,#ffa502 0%,#1a1a2e 100%)">
+                        <span class="blog-emoji">🧠</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span class="blog-category">CPU</span>
+                            <span class="blog-date">15 ก.พ. 2026</span>
+                        </div>
+                        <h3>AMD vs Intel 2026 ใครครองแชมป์ปีนี้?</h3>
+                        <p>ศึก CPU ยังคงดุเดือด AMD Ryzen 7000 X3D vs Intel 14th Gen ใครให้ประสิทธิภาพเกมมิ่งดีกว่ากัน?
+                            มาดูเบนช์มาร์ค...</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">CPU</span>
+                            <span class="blog-tag">AMD</span>
+                            <span class="blog-tag">Intel</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="blog-card">
+                    <div class="blog-card-img" style="background:linear-gradient(135deg,#0984e3 0%,#1a1a2e 100%)">
+                        <span class="blog-emoji">🎮</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span class="blog-category">GPU</span>
+                            <span class="blog-date">12 ก.พ. 2026</span>
+                        </div>
+                        <h3>DLSS 3.5 vs FSR 3 เทคโนโลยีไหนคุ้มกว่า?</h3>
+                        <p>เทคโนโลยี Upscaling ของ NVIDIA และ AMD ช่วยเพิ่ม FPS ได้มหาศาล
+                            แต่ภาพจะสูญเสียคุณภาพมากแค่ไหน? มาเปรียบเทียบกัน...</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">GPU</span>
+                            <span class="blog-tag">DLSS</span>
+                            <span class="blog-tag">FSR</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

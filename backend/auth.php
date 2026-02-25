@@ -96,7 +96,7 @@ function login($conn, $data)
 {
     if (!isset($data->username) || !isset($data->password)) {
         http_response_code(400);
-        echo json_encode(["message" => "Incomplete data."]);
+        echo json_encode(["success" => false, "message" => "กรุณากรอกข้อมูลให้ครบถ้วน"], JSON_UNESCAPED_UNICODE);
         return;
     }
 
@@ -110,20 +110,21 @@ function login($conn, $data)
         if (password_verify($data->password, $row['password'])) {
             http_response_code(200);
             echo json_encode([
-                "message" => "Successful login.",
+                "success" => true,
+                "message" => "เข้าสู่ระบบสำเร็จ",
                 "user" => [
                     "id" => $row['id'],
                     "username" => $row['username'],
                     "role" => $row['role']
                 ]
-            ]);
+            ], JSON_UNESCAPED_UNICODE);
         } else {
             http_response_code(401);
-            echo json_encode(["message" => "Login failed."]);
+            echo json_encode(["success" => false, "message" => "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"], JSON_UNESCAPED_UNICODE);
         }
     } else {
         http_response_code(401);
-        echo json_encode(["message" => "Login failed."]);
+        echo json_encode(["success" => false, "message" => "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"], JSON_UNESCAPED_UNICODE);
     }
 }
 ?>

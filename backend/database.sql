@@ -15,6 +15,10 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO users (username, email, password, role) VALUES
+('admin', 'admin@gstore.com', '$2y$10$6aX.XaXcyBLRa9xnBTVzCOv3lhEVi02OXXhBY6pdafmE06roNWUi2', 'admin'),
+('user', 'user@gstore.com', '$2y$10$6aX.XaXcyBLRa9xnBTVzCOv3lhEVi02OXXhBY6pdafmE06roNWUi2', 'customer');
+
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -32,7 +36,8 @@ CREATE TABLE IF NOT EXISTS orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
-    status ENUM('pending', 'completed', 'cancelled') DEFAULT 'pending',
+    payment_method VARCHAR(30) DEFAULT 'transfer',
+    status ENUM('pending', 'processing', 'shipped', 'completed', 'cancelled') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -46,11 +51,6 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
-
--- Initial Users (password: 'password')
-INSERT INTO users (username, password, role) VALUES 
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'),
-('user', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'customer');
 
 -- Mouse
 INSERT INTO products (name, description, price, original_price, image_url, stock, category, badge) VALUES 
