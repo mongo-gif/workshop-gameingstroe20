@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หมวดหมู่สินค้า | G-STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="category">
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:0924416570">📞 092-441-6570</a>
+                <a href="mailto:zezggez@gmail.com">✉️ zezggez@gmail.com</a>
+            </div>
+            <div class="top-bar-center">
+                ถ้าคุณชอบเกมมิ่งเกียร์ เราคือเพื่อนกัน — G-STORE เพื่อนรู้ใจสายเกมเมอร์
+            </div>
+            <div class="top-bar-right">
+                <a href="#">📍 ค้นหาร้านค้าใกล้คุณ ›</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">G-<span class="logo-highlight">STORE</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="ค้นหาสินค้า..."
+                    onkeydown="if(event.key==='Enter')searchInCategory()">
+                <button class="search-btn" onclick="searchInCategory()">🔍</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" id="login-btn" class="header-icon-btn">
+                    <span class="icon">👤</span>
+                    <span id="user-display">เข้าสู่ระบบ</span>
+                </a>
+                <a href="cart.html" class="header-icon-btn">
+                    <span class="icon">🛒</span>
+                    <span>ตะกร้า</span>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+                <button id="logout-btn" onclick="logout()" class="btn btn-outline hidden">ออกจากระบบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="container">
+            <button class="category-dropdown-btn" onclick="window.location.href='category.html'">
+                ☰ หมวดหมู่สินค้า ›
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#products">สินค้าทั้งหมด</a></li>
+                <li><a href="category.html" class="active">หมวดหมู่</a></li>
+                <li><a href="blog.html">บทความ</a></li>
+                <li><a href="contact.html">ติดต่อเรา</a></li>
+                <li><a href="about.html">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">🏠 หน้าแรก</a>
+                <span class="breadcrumb-sep">›</span>
+                <span id="breadcrumb-cat" class="breadcrumb-current">หมวดหมู่สินค้า</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Category Content -->
+    <section class="page-section">
+        <div class="container">
+            <!-- Category Sidebar + Products Grid -->
+            <div class="category-page-grid">
+                <!-- Category Sidebar -->
+                <aside class="category-sidebar">
+                    <h3>📂 หมวดหมู่สินค้า</h3>
+                    <ul id="category-sidebar-list"></ul>
+                </aside>
+
+                <!-- Products Area -->
+                <div class="category-products-area">
+                    <div class="category-products-header">
+                        <h2 id="category-title">
+                            <span id="cat-icon">📦</span>
+                            <span id="cat-name">สินค้าทั้งหมด</span>
+                        </h2>
+                        <span id="cat-count" class="cat-product-count">0 สินค้า</span>
+                    </div>
+                    <div id="products-grid" class="products-grid">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>กำลังโหลดสินค้า...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 G-STORE Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        let allCategoryProducts = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentCat = urlParams.get('cat') || 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSidebar();
+            loadCategoryProducts();
+        });
+
+        function renderSidebar() {
+            const list = document.getElementById('category-sidebar-list');
+            list.innerHTML = categories.map(cat => `
+                <li>
+                    <a href="category.html?cat=${cat.id}" 
+                       class="sidebar-cat-link ${currentCat === cat.id ? 'active' : ''}">
+                        <span class="sidebar-cat-icon">${cat.icon}</span>
+                        <span>${cat.name}</span>
+                    </a>
+                </li>
+            `).join('');
+        }
+
+        async function loadCategoryProducts() {
+            try {
+                const response = await fetch(`${API_URL}/products.php`);
+                allCategoryProducts = await response.json();
+                products = allCategoryProducts; // for addToCart to work
+
+                filterCategory(currentCat);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('products-grid').innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1">
+                        <span class="empty-icon">😕</span>
+                        <p>ไม่สามารถโหลดสินค้าได้</p>
+                        <button class="btn btn-primary" onclick="loadCategoryProducts()">ลองอีกครั้ง</button>
+                    </div>`;
+            }
+        }
+
+        function filterCategory(catId) {
+            currentCat = catId;
+            const cat = categories.find(c => c.id === catId);
+
+            // Update UI
+            document.getElementById('cat-icon').textContent = cat ? cat.icon : '📦';
+            document.getElementById('cat-name').textContent = cat ? cat.name : catId;
+            document.getElementById('breadcrumb-cat').textContent = cat ? cat.name : 'หมวดหมู่สินค้า';
+            document.title = `${cat ? cat.name : 'หมวดหมู่'} | G-STORE`;
+
+            // Filter products
+            let filtered;
+            if (catId === 'all') {
+                filtered = [...allCategoryProducts];
+            } else {
+                filtered = allCategoryProducts.filter(p => p.category === catId);
+            }
+
+            document.getElementById('cat-count').textContent = `${filtered.length} สินค้า`;
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-cat-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.href.includes(`cat=${catId}`)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Update URL without reload
+            const newUrl = `category.html?cat=${catId}`;
+            window.history.replaceState({}, '', newUrl);
+
+            renderProducts(filtered);
+        }
+
+        function searchInCategory() {
+            const input = document.getElementById('search-input');
+            const query = input.value.trim().toLowerCase();
+            if (!query) {
+                filterCategory(currentCat);
+                return;
+            }
+
+            let base = currentCat === 'all' ? allCategoryProducts : allCategoryProducts.filter(p => p.category === currentCat);
+            const results = base.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                (p.description && p.description.toLowerCase().includes(query))
+            );
+
+            document.getElementById('cat-count').textContent = `${results.length} ผลลัพธ์จาก "${input.value.trim()}"`;
+            renderProducts(results);
+        }
+    </script>
+</body>
+
+</html>

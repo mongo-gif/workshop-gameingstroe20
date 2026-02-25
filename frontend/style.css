@@ -2041,6 +2041,97 @@ footer {
     border: 1px solid var(--border-color);
 }
 
+/* ===== CATEGORY PAGE ===== */
+.category-page-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.category-sidebar {
+    background: var(--bg-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    position: sticky;
+    top: 160px;
+}
+
+.category-sidebar h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-red);
+}
+
+.category-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-cat-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text-medium);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: var(--transition);
+    margin-bottom: 2px;
+}
+
+.sidebar-cat-link:hover {
+    background: rgba(227, 30, 37, 0.05);
+    color: var(--primary-red);
+}
+
+.sidebar-cat-link.active {
+    background: rgba(227, 30, 37, 0.1);
+    color: var(--primary-red);
+    font-weight: 600;
+}
+
+.sidebar-cat-icon {
+    font-size: 1.2rem;
+    width: 28px;
+    text-align: center;
+}
+
+.category-products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--primary-red);
+}
+
+.category-products-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.cat-product-count {
+    background: var(--bg-main);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    color: var(--text-medium);
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+}
+
 .hidden {
     display: none !important;
 }
@@ -2509,6 +2600,25 @@ footer {
 
     .contact-grid {
         grid-template-columns: 1fr;
+    }
+
+    .category-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-sidebar {
+        position: static;
+    }
+
+    .category-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .sidebar-cat-link {
+        padding: 6px 12px;
+        font-size: 0.82rem;
     }
 
     .features-grid {

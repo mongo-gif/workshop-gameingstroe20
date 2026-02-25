@@ -124,7 +124,7 @@ function renderCategories() {
     if (!grid) return;
 
     grid.innerHTML = categories.map(cat => `
-        <div class="category-card ${activeCategory === cat.id ? 'active' : ''}" onclick="filterByCategory('${cat.id}')">
+        <div class="category-card ${activeCategory === cat.id ? 'active' : ''}" onclick="${cat.id === 'all' ? `filterByCategory('all')` : `window.location.href='category.html?cat=${cat.id}'`}">
             <span class="cat-icon">${cat.icon}</span>
             <span class="cat-name">${cat.name}</span>
         </div>
