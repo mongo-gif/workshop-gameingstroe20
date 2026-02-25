@@ -289,7 +289,7 @@ function renderProducts(items) {
                     ${discount ? `<span class="product-discount">-${discount}%</span>` : ''}
                 </div>
                 <button onclick="event.stopPropagation(); addToCart(${product.id})" class="add-to-cart-btn">
-                    🛒 เพิ่มลงตะกร้า
+                    🛒 หยิบใส่ตะกร้า
                 </button>
             </div>
         </div>
@@ -324,7 +324,7 @@ function addToCart(productId) {
     saveCart();
 
     // Show mini notification
-    showToast(`เพิ่ม "${product.name}" ลงตะกร้าแล้ว`);
+    showToast(`หยิบ "${product.name}" ใส่ตะกร้าสินค้าแล้ว`);
 }
 
 function showToast(message) {
@@ -591,7 +591,7 @@ function renderProductDetail(product) {
                 </div>
                 <div class="pd-actions">
                     <button class="pd-btn-cart" onclick="addToCartFromDetail()" ${stock === 0 ? 'disabled' : ''}>
-                        🛒 เพิ่มลงตะกร้า
+                        🛒 หยิบใส่ตะกร้า
                     </button>
                     <button class="pd-btn-buy" onclick="buyNow()" ${stock === 0 ? 'disabled' : ''}>
                         ซื้อเลย
@@ -688,7 +688,7 @@ function addToCartFromDetail() {
     }
 
     saveCart();
-    showToast(`เพิ่ม "${currentProduct.name}" จำนวน ${pdQty} ชิ้น ลงตะกร้าแล้ว`);
+    showToast(`หยิบ "${currentProduct.name}" จำนวน ${pdQty} ชิ้น ใส่ตะกร้าสินค้าแล้ว`);
 }
 
 function buyNow() {

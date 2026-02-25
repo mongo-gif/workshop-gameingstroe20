@@ -111,7 +111,7 @@ def main():
                 continue
                 
             try:
-                print(f'  Trying: {url[:80].encode("ascii", "replace").decode("ascii")}...')
+                print(f'  Trying: {url.encode("ascii", "replace").decode("ascii")}...')
             except Exception:
                 pass
             size = download_image(url, dest)
